@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mariana 🌷🦋</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to top, #1a1a2e, #16213e);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+/* Texto */
+h1 {
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    font-size: 2.5em;
+    z-index: 2;
+}
+
+/* Tulipanes (imagen de fondo opcional) */
+.tulips {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: url('tulipanes.jpg') no-repeat center bottom;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+/* Mariposas */
+.butterfly {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, orange, red);
+    border-radius: 50%;
+    animation: fly 10s linear infinite;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    50% {
+        transform: translateY(50vh) translateX(100px);
+    }
+    100% {
+        transform: translateY(-10vh) translateX(-100px);
+        opacity: 0;
+    }
+}
+
+/* Mensaje */
+.message {
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+    font-size: 1.3em;
+    z-index: 2;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Para Mariana 💖</h1>
+
+<div class="message">
+    Entre tulipanes y mariposas,<br>
+    solo pienso en ti 🌷🦋
+</div>
+
+<div class="tulips"></div>
+
+<script>
+// Generar mariposas
+function createButterfly() {
+    const butterfly = document.createElement("div");
+    butterfly.classList.add("butterfly");
+
+    butterfly.style.left = Math.random() * window.innerWidth + "px";
+    butterfly.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(butterfly);
+
+    setTimeout(() => {
+        butterfly.remove();
+    }, 10000);
+}
+
+// Crear mariposas constantemente
+setInterval(createButterfly, 500);
+</script>
+
+</body>
+</html>
