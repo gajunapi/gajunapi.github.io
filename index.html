@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* fondo tipo tulipanes con CSS */
+/* fondo tipo tulipanes */
 .hero {
   height: 100vh;
   background: radial-gradient(circle at 20% 80%, #ff4d6d 0%, transparent 40%),
@@ -31,7 +31,7 @@ body {
   font-size: 3em;
 }
 
-/* secciones */
+/* capítulos */
 .chapter {
   height: 100vh;
   display: flex;
@@ -40,7 +40,7 @@ body {
   position: relative;
 }
 
-/* imagen original */
+/* imagen base */
 .chapter-img {
   position: absolute;
   top: 50%;
@@ -57,16 +57,30 @@ body {
 .heart {
   width: 260px;
   height: 230px;
-  clip-path: path("M130 230 L20 120 A65 65 0 1 1 130 60 A65 65 0 1 1 240 120 Z");
   overflow: hidden;
-  z-index: 2;
+  clip-path: path("M130 230 L20 120 A65 65 0 1 1 130 60 A65 65 0 1 1 240 120 Z");
   margin: 0 auto;
+  transform: scale(1);
+  transition: transform 0.3s ease;
 }
 
 .heart img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* latido */
+.heart.beat {
+  animation: heartbeat 1.2s ease-in-out;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.08); }
+  50% { transform: scale(0.98); }
+  75% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* contenido */
@@ -102,7 +116,7 @@ body {
   max-width: 600px;
 }
 
-/* mariposas CSS */
+/* mariposas */
 .butterfly {
   position: fixed;
   width: 20px;
@@ -134,7 +148,6 @@ body {
     <h2 class="chapter-title">El inicio</h2>
     <p class="chapter-quote">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </p>
   </div>
 </section>
@@ -147,8 +160,7 @@ body {
     </div>
     <h2 class="chapter-title">Momentos únicos</h2>
     <p class="chapter-quote">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </p>
   </div>
 </section>
@@ -161,31 +173,42 @@ body {
     </div>
     <h2 class="chapter-title">Recuerdos</h2>
     <p class="chapter-quote">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Duis aute irure dolor in reprehenderit.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
     </p>
   </div>
 </section>
 
 <section class="finale">
   <p class="finale-message">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    <br><br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
     <em>Lorem ipsum dolor sit amet.</em>
   </p>
 </section>
 
 <script>
+/* mariposas */
 function createButterfly() {
   const b = document.createElement("div");
   b.classList.add("butterfly");
   b.style.left = Math.random() * window.innerWidth + "px";
   document.body.appendChild(b);
-
   setTimeout(() => b.remove(), 8000);
 }
 setInterval(createButterfly, 700);
+
+/* latido al hacer scroll */
+const hearts = document.querySelectorAll(".heart");
+
+window.addEventListener("scroll", () => {
+  hearts.forEach(heart => {
+    const rect = heart.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      heart.classList.add("beat");
+      setTimeout(() => heart.classList.remove("beat"), 1200);
+    }
+  });
+});
 </script>
 
 </body>
