@@ -895,7 +895,7 @@
   // ══════════════════════════════
   // 👇 CAMBIA ESTE ID por el de la canción que quieras en YouTube
   // Por ejemplo: en https://www.youtube.com/watch?v=kXYiU_JCYtU el ID es: kXYiU_JCYtU
-  const YT_VIDEO_ID = 'kXYiU_JCYtU';
+  const YT_VIDEO_ID = 'RXZzJi2svyg';
 
   let ytPlayer = null;
   let musicPlaying = false;
@@ -909,7 +909,7 @@
     ytPlayer = new YT.Player('yt-player', {
       height:'1', width:'1',
       videoId: YT_VIDEO_ID,
-      playerVars: { autoplay:0, controls:0, loop:1, playlist:RXZzJi2svyg&list=RDRXZzJi2svyg&start_radio=1 },
+      playerVars: { autoplay:0, controls:0, loop:1, playlist:YT_VIDEO_ID },
       events: {
         onReady: (e) => {
           e.target.setVolume(60);
